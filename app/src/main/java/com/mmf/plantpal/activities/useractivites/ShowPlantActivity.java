@@ -1,0 +1,76 @@
+package com.mmf.plantpal.activities.useractivites;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+
+import com.bumptech.glide.Glide;
+import com.mmf.plantpal.R;
+import com.mmf.plantpal.databinding.ActivityShowPlantBinding;
+import com.mmf.plantpal.models.Plant;
+import com.mmf.plantpal.utilteis.Constants;
+import com.mmf.plantpal.utilteis.MoneyFormatter;
+
+public class ShowPlantActivity extends AppCompatActivity {
+
+    ActivityShowPlantBinding binding;
+
+    Plant plant;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityShowPlantBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+        plant = (Plant) getIntent().getSerializableExtra(Constants.KEY_PLANTS_PARAM);
+
+        initView();
+        initPlantInfo();
+    }
+
+
+    private void initView(){
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+
+    private void initPlantInfo(){
+        binding.plantNameHeader.setText(plant.getName());
+        binding.plantName.setText(plant.getName());
+        binding.plantPrice.setText(MoneyFormatter.fromNumberToMoneyFormat(plant.getPrice()));
+        binding.stock.setText(String.valueOf(plant.getStock()));
+        binding.plantSpecies.setText(plant.getSpecies());
+        binding.plantCareInstructions.setText(plant.getCareInstructions());
+        binding.plantGrowHabit.setText(plant.getGrowHabit());
+        binding.plantDescription.setText(plant.getDescription());
+
+
+
+        if (plant.getImagePath() == null || plant.getImagePath().isEmpty()) {
+            binding.plantImage.setImageResource(R.drawable.plantimage);
+        }
+        else {
+            Glide.with(this)
+                    .load(plant.getImagePath())
+                    .error(R.drawable.plantimage)
+                    .placeholder(R.drawable.plantimage)
+                    .into(binding.plantImage);
+
+
+
+            Glide.with(this)
+                    .load(plant.getImagePath())
+                    .error(R.drawable.plantimage)
+                    .placeholder(R.drawable.plantimage)
+                    .into(binding.plantImageBlur);
+        }
+    }
+}

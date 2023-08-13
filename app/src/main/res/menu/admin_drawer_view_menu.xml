@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Main">
+        <menu>
+            <item
+                android:id="@+id/drawer_menu_users_user_details"
+                android:icon="@drawable/ic_users"
+                android:title="@string/str_users_details" />
+
+
+            <item
+                android:id="@+id/drawer_menu_users_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="@string/str_feedback" />
+
+
+            <item
+                android:id="@+id/drawer_menu_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="@string/str_logout" />
+        </menu>
+    </item>
+
+</menu>

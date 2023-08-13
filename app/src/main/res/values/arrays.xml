@@ -1,0 +1,19 @@
+<resources>
+
+    <string-array name="sort_by_for_plants">
+        <item>@string/str_name</item>
+        <item>@string/str_price</item>
+        <item>@string/str_species</item>
+    </string-array>
+
+
+
+    <string-array name="sort_by_for_accessory">
+        <item>@string/str_name</item>
+        <item>@string/str_price</item>
+        <item>@string/hint_type</item>
+    </string-array>
+
+
+
+</resources>

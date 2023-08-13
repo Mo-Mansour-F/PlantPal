@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">PlantPal</string>
+
+
+    <string name="str_please_wait">Please Wait</string>
+    <string name="str_alert">Alert</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="str_ok">OK</string>
+    <string name="str_yes">Yes</string>
+    <string name="str_no">No</string>
+    <string name="str_error">Error</string>
+    <string name="str_success">Success</string>
+    <string name="str_sorry">Ops</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_save">Save</string>
+    <string name="str_send">Send</string>
+    <string name="str_close">Close</string>
+    <string name="str_delete">Delete</string>
+    <string name="str_update">Update</string>
+    <string name="title_not_found">Not Found Data</string>
+    <string name="str_loading">Loading</string>
+    <string name="str_not_selected">Not Selected</string>
+    <string name="str_password">Password</string>
+    <string name="str_login">Login</string>
+    <string name="str_error_not_expected">Not Expected Error</string>
+    <string name="str_remember_me">Remember Me</string>
+    <string name="str_profile">Profile</string>
+    <string name="str_logout">Logout</string>
+    <string name="str_sign_up">Sign Up</string>
+    <string name="str_not_have_account">Not Have An Account, SignUp</string>
+    <string name="str_already_have_account">Already Have Account, Login</string>
+
+
+    <string name="error_enter_your_name">Enter Your Name</string>
+    <string name="error_enter_your_email">Enter Your Email</string>
+    <string name="error_email_not_validation">Email Not Validation</string>
+    <string name="error_enter_your_address">Enter Your Address</string>
+    <string name="error_enter_your_password">Enter Your Password</string>
+
+
+    <string name="error_required">Required</string>
+
+    <string name="error_image_required">Image Is Required</string>
+
+    <string name="str_no_plant">Not Found Plant</string>
+    <string name="str_no_result">No Result Found</string>
+    <string name="str_no_accessory">Not Found Accessory</string>
+    <string name="str_no_users">Not Found Users</string>
+    <string name="str_no_favorite">Not Found Favorite</string>
+    <string name="str_no_cart_item">No Items In Cart</string>
+
+
+    <string name="hint_email">Email</string>
+    <string name="hint_address">Address</string>
+    <string name="user_name">User Name</string>
+    <string name="str_users">Users</string>
+    <string name="str_not_exist_this_email">Email Not Exist</string>
+    <string name="str_password_not_correct">Password Not Exist</string>
+
+
+    <string name="str_email_exist">This Email Is Exist</string>
+    <string name="str_plant">Plant</string>
+    <string name="str_accessory">Accessory</string>
+    <string name="hint_plant_name">Plant Name</string>
+    <string name="hint_price">Price</string>
+    <string name="str_add_plant">Add Plant</string>
+    <string name="str_accessory_name">Accessory Name</string>
+    <string name="str_add_accessory">Add Accessory</string>
+    <string name="str_update_accessory">Update Accessory</string>
+    <string name="btn_click_to_select_image">Click To Select an Image</string>
+    <string name="hint_stock">Stock</string>
+    <string name="hint_care_instructions">Care Instructions</string>
+    <string name="hint_usage_instructions">Usage Instructions</string>
+    <string name="hint_grow_habit">Grow Habit</string>
+    <string name="hint_description">Description</string>
+    <string name="add_successfully">Added Successfully</string>
+    <string name="update_successfully">Update Successfully</string>
+    <string name="delete_successfully">Delete Successfully</string>
+    <string name="message_send_successfully">Message Send Successfully</string>
+    <string name="hint_accessory_name">Accessory Name</string>
+    <string name="str_feedback">Feedback</string>
+    <string name="str_users_details">Users Details</string>
+
+
+    <string name="title_update_plant">Update Plant</string>
+
+    <string name="error_no_app">not found app to do this action</string>
+    <string name="msg_confirm_delete">Are You Sure To Delete</string>
+    <string name="msg_confirm_delete_account">Are You Sure To Delete This Account</string>
+    <string name="msg_account_deleted">This Account Has Been Deleted</string>
+
+    <string name="str_uploading_image">Uploading Image</string>
+    <string name="str_status_uploading_image">Progress</string>
+    <string name="hint_species">Species</string>
+    <string name="hint_type">Type</string>
+    <string name="hint_search_by_name">Search By Name</string>
+    <string name="str_filter">Filter</string>
+    <string name="str_filter_by">Filter By</string>
+    <string name="str_sort_by">Sort By</string>
+
+
+    <string name="str_name">Name</string>
+    <string name="str_price">Price</string>
+    <string name="str_species">Species</string>
+    <string name="str_add_to_cart">Add To Cart</string>
+    <string name="str_favorite">Favorite</string>
+    <string name="str_cart">Cart</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_checkout">Check Out</string>
+    <string name="hint_delete_account">Delete Account</string>
+    <string name="user_from">From</string>
+    <string name="hint_message">Message</string>
+    <string name="str_contact_us">Contact Us</string>
+
+
+</resources>
