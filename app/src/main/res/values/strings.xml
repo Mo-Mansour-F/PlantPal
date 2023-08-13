@@ -112,6 +112,7 @@
     <string name="user_from">From</string>
     <string name="hint_message">Message</string>
     <string name="str_contact_us">Contact Us</string>
+    <string name="str_version">Version</string>
 
 
 </resources>

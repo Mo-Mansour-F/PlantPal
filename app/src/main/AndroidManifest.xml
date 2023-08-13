@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.PlantPal">
-        <activity android:name=".activities.useractivites.ContactUsActivity"></activity>
+        <activity android:name=".activities.loginactivites.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.useractivites.ContactUsActivity" />
         <activity android:name=".activities.useractivites.ProfileActivity" />
         <activity android:name=".activities.useractivites.FavoritesActivity" />
         <activity android:name=".activities.useractivites.ShowAccessoryActivity" />
@@ -28,14 +36,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.loginactivites.LoginActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>
