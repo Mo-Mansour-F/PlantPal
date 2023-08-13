@@ -278,7 +278,6 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/azer"
                     android:text="@string/hint_usage_instructions"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"

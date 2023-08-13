@@ -156,13 +156,12 @@
                             app:layout_constraintTop_toBottomOf="@+id/plant_image">
 
 
-
                             <androidx.constraintlayout.widget.Guideline
                                 android:id="@+id/guideline"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                app:layout_constraintGuide_percent="0.60" />
+                                app:layout_constraintGuide_begin="228dp" />
 
 
                             <TextView
@@ -251,7 +250,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="5dp"
-
                     android:text="@string/hint_description"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -280,8 +278,6 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/azer"
-
                     android:text="@string/hint_care_instructions"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -309,8 +305,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="5dp"
-
-                    android:text="@string/hint_care_instructions"
+                    android:text="@string/hint_grow_habit"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

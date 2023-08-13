@@ -1,43 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".activities.loginactivites.SignUpActivity">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-        <TextView
-            android:id="@+id/sign_up_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:text="@string/str_sign_up"
-            android:textColor="?attr/colorPrimary"
-            android:fontFamily="@font/azer"
-            android:textSize="40sp"
-            android:layout_gravity="center"
+        <ImageView
+            android:id="@+id/singup_image_view"
+            android:layout_width="0dp"
+            android:layout_height="280dp"
+            android:contentDescription="@string/bg_img_desc"
+            android:scaleType="fitStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/login_bg_img" />
+
+        <TextView
+            android:id="@+id/singup_welcome_hello_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/signup_welcome_hello"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="@id/singup_image_view"
+            app:layout_constraintTop_toTopOf="@id/singup_image_view" />
+
+        <TextView
+            android:id="@+id/singup_welcome_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/signup_welcome_text"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline3"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/singup_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/singup_welcome_hello_tv" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_name_layout"
-            style="@style/Widget.Design.TextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:hint="@string/user_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_title">
+            app:layout_constraintTop_toBottomOf="@id/singup_image_view">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/user_name_et"
@@ -48,7 +67,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_email_layout"
-            style="@style/Widget.Design.TextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -68,7 +87,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_address_layout"
-            style="@style/Widget.Design.TextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -85,7 +104,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/user_password_layout"
-            style="@style/Widget.Design.TextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -136,5 +155,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</ScrollView>

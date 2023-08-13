@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         String text = getString(R.string.str_not_have_account);
         SpannableString ss = new SpannableString(text);
         UnderlineSpan underlineSpan = new UnderlineSpan();
-        ss.setSpan(underlineSpan, 21, 27, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(underlineSpan, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         binding.btnSignUp.setText(ss);
 
 

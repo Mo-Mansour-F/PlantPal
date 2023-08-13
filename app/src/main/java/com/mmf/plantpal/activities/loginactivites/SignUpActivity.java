@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.UnderlineSpan;
 import android.util.Patterns;
 import android.view.View;
 
@@ -39,6 +42,12 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void initView() {
+        String text = getString(R.string.str_already_have_account);
+        SpannableString ss = new SpannableString(text);
+        UnderlineSpan underlineSpan = new UnderlineSpan();
+        ss.setSpan(underlineSpan, 25, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        binding.btnLogin.setText(ss);
+
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
