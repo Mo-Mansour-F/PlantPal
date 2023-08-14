@@ -88,8 +88,8 @@ public class CartFragment extends Fragment {
 
         cartItemAdapter.setOnItemCartClickListener(new CartItemAdapter.OnItemCartClickListener() {
             @Override
-            public void onButtonRemoveClick(Item item) {
-                DataRepository.getItemList().remove(item.getReferenceId());
+            public void onButtonRemoveClick(String itemReference) {
+                DataRepository.getItemList().remove(itemReference);
                 onCartItemChangedListener.onOnCartItemChanged();
                 setItemList();
             }
@@ -102,19 +102,30 @@ public class CartFragment extends Fragment {
 
     private void checkoutInvoice() {
         new SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
-                .setTitleText("Are you sure?")
-                .setContentText("Won't be able to recover this file!")
-                .setConfirmText("Yes,delete it!")
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                .setTitleText(getString(R.string.str_confirm))
+                .setContentText("Are you sure to checkout items?")
+                .setConfirmButton(getString(R.string.str_yes), new SweetAlertDialog.OnSweetClickListener() {
                     @Override
-                    public void onClick(SweetAlertDialog sDialog) {
-//                        sDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-//                        sDialog.setTitleText("Loading");
-//                        sDialog.setConfirmClickListener(null);
-//                        sDialog.setCancelable(false);
-//                        sDialog.changeAlertType(SweetAlertDialog.PROGRESS_TYPE);
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
 
-                        sswait(sDialog);
+                        DataRepository.getItemList().clear();
+                        onCartItemChangedListener.onOnCartItemChanged();
+                        setItemList();
+
+
+                        sweetAlertDialog
+                                .showCancelButton(false)
+                                .setTitleText(getString(R.string.str_success))
+                                .setContentText("Checkout Success")
+                                .setConfirmText(getString(R.string.str_ok))
+                                .setConfirmClickListener(null)
+                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                    }
+                })
+                .setCancelButton(getString(R.string.str_cancel), new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
                     }
                 })
                 .show();
@@ -122,28 +133,8 @@ public class CartFragment extends Fragment {
     }
 
 
-    private void sswait(SweetAlertDialog sDialog) {
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        sDialog
-                .setTitleText("Deleted!")
-                .setContentText("Your imaginary file has been deleted!")
-                .setConfirmText("OK")
-                .setConfirmClickListener(null)
-                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-
-
-        DataRepository.getItemList().clear();
-        onCartItemChangedListener.onOnCartItemChanged();
-        setItemList();
-    }
-
-
     private void setItemList() {
-        cartItemAdapter.setItemList(DataRepository.getItemsCart());
+        cartItemAdapter.setCartItemList(DataRepository.getItemsCart());
     }
 
 

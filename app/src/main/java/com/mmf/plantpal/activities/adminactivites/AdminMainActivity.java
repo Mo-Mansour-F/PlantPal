@@ -32,9 +32,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
 
         setSupportActionBar(binding.toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+
 
         setupDrawerContent(binding.nvView);
         initViewPager();
@@ -105,7 +103,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
 
                             case R.id.drawer_menu_users_feedback:
-//                                startActivity(new Intent(EmployeeMainActivity.this, RequestLeaveActivity.class));
+                                startActivity(new Intent(AdminMainActivity.this, UsersFeedbackActivity.class));
                                 selectDrawerItem(menuItem);
                                 break;
 
@@ -154,11 +152,6 @@ public class AdminMainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
 
 
 

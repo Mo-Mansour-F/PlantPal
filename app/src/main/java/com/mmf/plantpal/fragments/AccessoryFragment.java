@@ -32,6 +32,7 @@ import com.mmf.plantpal.adapters.AccessoryAdapter;
 import com.mmf.plantpal.databinding.FragmentAccessoryBinding;
 import com.mmf.plantpal.listerners.OnCartItemChangedListener;
 import com.mmf.plantpal.models.Accessory;
+import com.mmf.plantpal.models.CartItem;
 import com.mmf.plantpal.models.User;
 import com.mmf.plantpal.repository.DataRepository;
 import com.mmf.plantpal.utilteis.Constants;
@@ -64,6 +65,7 @@ public class AccessoryFragment extends Fragment {
     int sortBy = 0;
     String searchValue = "" ;
 
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -79,7 +81,7 @@ public class AccessoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initView();
         initRecyclerView();
-        getAccessories();
+
 
     }
 
@@ -98,6 +100,11 @@ public class AccessoryFragment extends Fragment {
         return binding.getRoot();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        getAccessories();
+    }
 
     private void initView(){
         User user = MySharedPreferencesManager.getUserLoginDetails(requireContext());
@@ -170,7 +177,16 @@ public class AccessoryFragment extends Fragment {
 
             @Override
             public void onAddToCartButtonClick(Accessory accessory) {
-                DataRepository.getItemList().put(accessory.getReferenceId(), accessory);
+                CartItem cartItem = new CartItem();
+                cartItem.setName(accessory.getName());
+                cartItem.setPrice(accessory.getPrice());
+                cartItem.setStock(accessory.getStock());
+                cartItem.setImagePath(accessory.getImagePath());
+                cartItem.setReferenceId(accessory.getReferenceId());
+
+                DataRepository.addItemCart(cartItem);
+
+//                DataRepository.getItemList().put(plant.getReferenceId(), cartItem);
                 onCartItemChangedListener.onOnCartItemChanged();
             }
         });

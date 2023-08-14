@@ -107,11 +107,13 @@ public class MsgAlert {
 
     public static void showFieldError(Context context, String errorMessage, TextInputEditText inputEditText) {
         inputEditText.setError(errorMessage);
+        inputEditText.requestFocus();
         showErrorToast(context, errorMessage);
     }
 
     public static void showFieldError(Context context, String errorMessage, AppCompatAutoCompleteTextView autoCompleteTextView) {
         autoCompleteTextView.setError(errorMessage);
+        autoCompleteTextView.requestFocus();
         showErrorToast(context, errorMessage);
     }
 

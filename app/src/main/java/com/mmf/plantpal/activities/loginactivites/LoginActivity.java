@@ -59,7 +59,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkEmptyFields()) return;
-                login();
+                String email = binding.emailEt.getText().toString().trim();
+                String password = binding.passwordEt.getText().toString().trim();
+                login(email, password);
             }
         });
 
@@ -73,13 +75,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void login() {
+    private void login(String email, String password) {
+
         MsgAlert.showProgress(this);
-
-        String email = binding.emailEt.getText().toString().trim();
-        String password = binding.passwordEt.getText().toString().trim();
-
-
         MyFireBaseReferences
                 .getUsersReference()
                 .orderByChild("email")
@@ -138,7 +136,9 @@ public class LoginActivity extends AppCompatActivity {
     private void checkIsLogin() {
         User user = MySharedPreferencesManager.getUserLoginDetails(this);
         if (user.getEmail() != null) {
-            goToMainActivity(user);
+            String email = user.getEmail();
+            String password = user.getPassword();
+            login(email, password);
         }
     }
 

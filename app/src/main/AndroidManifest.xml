@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mmf.plantpal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_EMAIL" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.PlantPal">
-        <activity android:name=".activities.loginactivites.SplashScreenActivity"
+        <activity android:name=".activities.useractivites.HelpActivity"></activity>
+        <activity android:name=".activities.adminactivites.UsersFeedbackActivity" />
+        <activity android:name=".activities.useractivites.SendFeedbackActivity" />
+        <activity
+            android:name=".activities.loginactivites.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +43,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.loginactivites.LoginActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

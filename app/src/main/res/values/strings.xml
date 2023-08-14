@@ -32,16 +32,19 @@
     <string name="error_enter_your_name">Please Enter Your Name</string>
     <string name="error_enter_your_email">Please Enter Your Email</string>
     <string name="error_email_not_validation">Invalid Email</string>
+    <string name="error_password_not_validation">Password Must Contain Capital Later, Minimum one Number, Minimum one symbol </string>
     <string name="error_enter_your_address">Please Enter Your Address</string>
     <string name="error_enter_your_password">Please Enter Your Password</string>
 
     <string name="error_required">Field Required</string>
+    <string name="error_rating_required">Rating Required</string>
     <string name="error_image_required">Image Required</string>
 
     <string name="str_no_plant">Plant Not Found</string>
     <string name="str_no_result">No Results Found</string>
     <string name="str_no_accessory">Accessory Not Found</string>
     <string name="str_no_users">Users Not Found</string>
+    <string name="str_no_feedback">Not Yet Feedback</string>
     <string name="str_no_favorite">No Favorites Found</string>
     <string name="str_no_cart_item">No Items In Cart</string>
 
@@ -97,16 +100,14 @@
     <string name="str_add_to_cart">Add To Cart</string>
     <string name="str_favorite">Favorite</string>
     <string name="str_cart">Cart</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="str_checkout">Check Out</string>
     <string name="hint_delete_account">Delete Account</string>
     <string name="user_from">From</string>
     <string name="hint_message">Message</string>
+    <string name="hint_your_feedback">Your Feedback</string>
     <string name="str_contact_us">Contact Us</string>
     <string name="str_version">Version</string>
 
-    <!-- added by abdu and hesham -->
     <string name="login_welcome_text">Log In!</string>
     <string name="login_welcome">Welcome Back,</string>
 
@@ -119,6 +120,9 @@
     <string name="minus_btn_desc">Decrease Button</string>
     <string name="pro_details_delete_btn_desc">Remove item Button</string>
     <string name="pro_details_like_btn_desc">Like Button</string>
-    <!-- ************************************************  -->
+    <string name="hint_rating">Rating</string>
+    <string name="contact_us_title">Get in touch with us using this mail</string>
+    <string name="str_contact_mail">plantpal@gmail.com</string>
+    <string name="str_help">Help</string>
 
 </resources>

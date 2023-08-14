@@ -31,6 +31,7 @@ import com.mmf.plantpal.activities.useractivites.ShowPlantActivity;
 import com.mmf.plantpal.adapters.PlantAdapter;
 import com.mmf.plantpal.databinding.FragmentPlantBinding;
 import com.mmf.plantpal.listerners.OnCartItemChangedListener;
+import com.mmf.plantpal.models.CartItem;
 import com.mmf.plantpal.models.Plant;
 import com.mmf.plantpal.models.User;
 import com.mmf.plantpal.repository.DataRepository;
@@ -76,16 +77,6 @@ public class PlantFragment extends Fragment {
     }
 
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        initView();
-        initRecyclerView();
-        getPlants();
-
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,6 +95,22 @@ public class PlantFragment extends Fragment {
         return binding.getRoot();
     }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initView();
+        initRecyclerView();
+    }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getPlants();
+    }
 
     private void initView() {
         User user = MySharedPreferencesManager.getUserLoginDetails(requireContext());
@@ -177,7 +184,17 @@ public class PlantFragment extends Fragment {
 
             @Override
             public void onAddToCartButtonClick(Plant plant) {
-                DataRepository.getItemList().put(plant.getReferenceId(), plant);
+                CartItem cartItem = new CartItem();
+                cartItem.setName(plant.getName());
+                cartItem.setPrice(plant.getPrice());
+                cartItem.setStock(plant.getStock());
+                cartItem.setImagePath(plant.getImagePath());
+                cartItem.setReferenceId(plant.getReferenceId());
+
+                DataRepository.addItemCart(cartItem);
+
+//                DataRepository.getItemList().put(plant.getReferenceId(), cartItem);
+
                 onCartItemChangedListener.onOnCartItemChanged();
 
             }

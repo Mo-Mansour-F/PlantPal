@@ -80,6 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void enableField(){
         binding.userName.setEnabled(enable);
         binding.userAddress.setEnabled(enable);
+        binding.userPasswordEt.setEnabled(enable);
     }
 
 
@@ -141,9 +142,11 @@ public class ProfileActivity extends AppCompatActivity {
         MsgAlert.showProgress(this);
         String userName = binding.userName.getText().toString().trim();
         String address = binding.userAddress.getText().toString().trim();
+        String password = binding.userAddress.getText().toString().trim();
 
         user.setName(userName);
         user.setAddress(address);
+        user.setPassword(password);
 
         MyFireBaseReferences
                 .getUsersReference()
@@ -165,6 +168,7 @@ public class ProfileActivity extends AppCompatActivity {
     private boolean checkEmptyFields() {
         String userName = binding.userName.getText().toString().trim();
         String address = binding.userAddress.getText().toString().trim();
+        String password = binding.userPasswordEt.getText().toString().trim();
 
         if (userName.length() == 0) {
             MsgAlert.showFieldError(getApplicationContext(), getString(R.string.error_enter_your_name), binding.userName);
@@ -178,6 +182,12 @@ public class ProfileActivity extends AppCompatActivity {
         if (address.isEmpty()) {
             MsgAlert.showFieldError(getApplicationContext(), getString(R.string.error_enter_your_address),
                     binding.userAddress);
+            return true;
+        }
+
+        if (password.isEmpty()) {
+            MsgAlert.showFieldError(getApplicationContext(), getString(R.string.error_enter_your_password),
+                    binding.userPasswordEt);
             return true;
         }
 

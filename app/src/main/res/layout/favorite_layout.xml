@@ -2,96 +2,85 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/product_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:clickable="false"
-    android:focusable="true"
-    app:cardElevation="0dp"
-    app:strokeColor="#CCCCCC"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="2dp"
+    app:cardElevation="5dp"
     app:strokeWidth="1dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/item_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/round_outline_rect"
-            android:contentDescription="@string/add_img_item_desc"
-            android:scaleType="centerCrop"
-            android:src="@drawable/plantimage"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-        <TextView
-            android:id="@+id/item_name"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:lines="2"
-            android:textAppearance="@style/TextAppearance.MyTheme.Body1"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
-            app:layout_constraintStart_toEndOf="@+id/item_image"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="some title may be two lines" />
-
-        <ImageButton
-            android:id="@+id/btn_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/round_button"
-            android:backgroundTint="#FFFFFF"
-            android:contentDescription="@string/pro_details_like_btn_desc"
-            android:scaleType="center"
-            app:layout_constraintBottom_toBottomOf="@+id/item_name"
-            app:layout_constraintEnd_toStartOf="@+id/add_item_to_cart"
-            app:layout_constraintTop_toTopOf="@+id/item_name"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_filled_favorite" />
-
-        <ImageButton
-            android:id="@+id/add_item_to_cart"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/round_button"
-            android:contentDescription="@string/pro_details_delete_btn_desc"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_favorite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_favorite"
-            app:srcCompat="@drawable/ic_add_cart"
-            app:tint="@color/gray" />
-
-        <TextView
-            android:id="@+id/item_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:textAppearance="@style/TextAppearance.MyTheme.Body1"
-            android:textColor="@color/md_theme_light_primary"
-            android:textStyle="bold"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_image"
-            app:layout_constraintTop_toBottomOf="@+id/item_name"
-            app:layout_constraintVertical_bias="1.0"
-            tools:text="$1234.56" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/item_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/add_img_item_desc"
+                android:scaleType="centerCrop"
+                android:src="@drawable/plantimage" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:maxLines="2"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="some title may be two lines" />
+
+
+                <TextView
+                    android:id="@+id/item_price"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/md_theme_light_primary"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/item_image"
+                    app:layout_constraintTop_toBottomOf="@+id/item_name"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:text="$1234.56" />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete_favorite_item"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:icon="@drawable/ic_filled_favorite"
+                app:iconGravity="end"
+                app:iconSize="25dp"
+                app:iconTint="#FF0000" />
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

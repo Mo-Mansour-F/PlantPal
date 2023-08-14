@@ -15,76 +15,56 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/round_outline_rect"
+            android:layout_margin="5dp"
             android:contentDescription="@string/add_img_item_desc"
             android:scaleType="centerCrop"
             android:src="@drawable/plantimage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:lines="2"
-            android:textAppearance="@style/TextAppearance.MyTheme.Body1"
+
+            android:layout_margin="5dp"
+            android:maxLines="2"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_delete"
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
             app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="some title may be two lines" />
 
-        <ImageButton
-            android:id="@+id/btn_favorite"
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_delete"
+            style="@style/Widget.Material3.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/round_button"
-            android:backgroundTint="#FFFFFF"
-            android:contentDescription="@string/pro_details_like_btn_desc"
-            android:scaleType="center"
-            app:layout_constraintBottom_toBottomOf="@+id/item_name"
-            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
-            app:layout_constraintTop_toTopOf="@+id/item_name"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_favorite" />
+            android:layout_gravity="center"
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="end"
+            app:iconSize="25dp"
 
-        <ImageButton
-            android:id="@+id/btn_delete"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/round_button"
-            android:contentDescription="@string/pro_details_delete_btn_desc"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_favorite"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_favorite"
-            app:srcCompat="@drawable/ic_delete"
-            app:tint="@color/gray" />
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
 
         <TextView
             android:id="@+id/item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:textAppearance="@style/TextAppearance.MyTheme.Body1"
+            android:layout_margin="5dp"
             android:textColor="@color/md_theme_light_primary"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -97,7 +77,7 @@
             android:id="@+id/cart_item_quantity_buttons_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_margin="5dp"
             android:background="@drawable/layout_background_rounded_corners"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@id/item_price"
@@ -117,13 +97,12 @@
                 app:srcCompat="@drawable/ic_remove_24" />
 
             <TextView
-                android:id="@+id/cart_item_quantity_text_View"
+                android:id="@+id/cart_item_quantity"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/blue_shadow_color"
+                android:background="#54757BAF"
                 android:gravity="center_horizontal|center_vertical"
-                android:textAppearance="@style/TextAppearance.MyTheme.Body1"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="123" />

@@ -43,9 +43,6 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
 
 
         setSupportActionBar(binding.toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
 
         setupDrawerContent(binding.nvView);
         initViewPager();
@@ -84,8 +81,6 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
 
 
     private void initViewPager() {
-
-
         UserPagerAdapter userPagerAdapter = new UserPagerAdapter(UserMainActivity.this);
 
         binding.viewPager.setAdapter(userPagerAdapter);
@@ -152,9 +147,17 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
                                 startActivity(new Intent(UserMainActivity.this, FavoritesActivity.class));
                                 break;
 
+                            case R.id.drawer_menu_feedback:
+                                startActivity(new Intent(UserMainActivity.this, SendFeedbackActivity.class));
+                                break;
 
                             case R.id.drawer_menu_contact_us:
                                 startActivity(new Intent(UserMainActivity.this, ContactUsActivity.class));
+                                break;
+
+
+                            case R.id.drawer_menu_help:
+                                startActivity(new Intent(UserMainActivity.this, HelpActivity.class));
                                 break;
 
                             case R.id.drawer_menu_logout:
@@ -202,12 +205,6 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return super.onSupportNavigateUp();
     }
 
 

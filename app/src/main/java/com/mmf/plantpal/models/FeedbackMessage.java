@@ -1,12 +1,13 @@
 package com.mmf.plantpal.models;
 
-public class ContactMessage {
+public class FeedbackMessage {
     private String referenceId;
     private String fromUserName;
     private String fromUserEmail;
-    private String message;
+    private String feedbackMessage;
+    private float rate;
 
-    public ContactMessage() {
+    public FeedbackMessage() {
     }
 
     public String getReferenceId() {
@@ -33,11 +34,20 @@ public class ContactMessage {
         this.fromUserEmail = fromUserEmail;
     }
 
-    public String getMessage() {
-        return message;
+    public String getFeedbackMessage() {
+        return feedbackMessage;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setFeedbackMessage(String feedbackMessage) {
+        this.feedbackMessage = feedbackMessage;
+    }
+
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
     }
 }

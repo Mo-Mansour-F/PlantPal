@@ -46,11 +46,11 @@ public class MyFireBaseReferences {
     }
 
 
-    public static DatabaseReference getContactMessageReference(){
+    public static DatabaseReference getFeedbackReference(){
         return FirebaseDatabase.
                 getInstance()
                 .getReference()
                 .child(Constants.KEY_FIRE_BASE_ROOT)
-                .child(Constants.KEY_CONTACT_MESSAGE);
+                .child(Constants.KEY_FEED_BACK);
     }
 }

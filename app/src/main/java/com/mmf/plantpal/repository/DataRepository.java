@@ -1,5 +1,6 @@
 package com.mmf.plantpal.repository;
 
+import com.mmf.plantpal.models.CartItem;
 import com.mmf.plantpal.models.Item;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class DataRepository {
     private static List<String> speciesList = new ArrayList<>();
     private static List<String> typesList = new ArrayList<>();
-    private static Map<String, Item> itemList = new HashMap<>();
+    private static Map<String, CartItem> itemList;
 
 
     public static List<String> getSpeciesList() {
@@ -37,20 +38,41 @@ public class DataRepository {
     }
 
 
-    public static Map<String, Item> getItemList() {
+    public static Map<String, CartItem> getItemList() {
+        if (itemList == null){
+            itemList = new HashMap<>();
+        }
         return itemList;
     }
 
-    public static void setItemList(Map<String, Item> itemList) {
+    public static void setItemList(Map<String, CartItem> itemList) {
         DataRepository.itemList = itemList;
     }
 
 
-    public static List<Item> getItemsCart(){
-        List<Item> items = new ArrayList<>();
-        for (Map.Entry<String, Item> itemEntry : itemList.entrySet()) {
+    public static List<CartItem> getItemsCart(){
+        List<CartItem> items = new ArrayList<>();
+        for (Map.Entry<String, CartItem> itemEntry : itemList.entrySet()) {
             items.add(itemEntry.getValue());
         }
         return items;
     }
+
+
+
+
+
+    public static void addItemCart(CartItem cartItem) {
+
+        if (itemList.containsKey(cartItem.getReferenceId())){
+            CartItem item = itemList.get(cartItem.getReferenceId());
+            assert item != null;
+            item.setCount(item.getCount() + 1);
+            getItemList().put(cartItem.getReferenceId(), item);
+        }else {
+            cartItem.setCount(1);
+            getItemList().put(cartItem.getReferenceId(), cartItem);
+        }
+    }
+
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Main">
+    <item android:title="">
         <menu>
             <item
                 android:id="@+id/drawer_menu_users_user_details"

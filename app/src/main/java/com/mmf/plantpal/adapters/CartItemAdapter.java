@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.mmf.plantpal.R;
 import com.mmf.plantpal.databinding.CartItemLayoutBinding;
 import com.mmf.plantpal.databinding.FragmentCartBinding;
+import com.mmf.plantpal.models.CartItem;
 import com.mmf.plantpal.models.Item;
 import com.mmf.plantpal.repository.DataRepository;
 import com.mmf.plantpal.utilteis.MoneyFormatter;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemVewHolder> {
     private Context context;
-    private List<Item> itemList;
+    private List<CartItem> cartItemList;
 
     FragmentCartBinding binding;
 
@@ -30,7 +31,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
     public CartItemAdapter(Context context, FragmentCartBinding binding) {
         this.context = context;
-        this.itemList = new ArrayList<>();
+        this.cartItemList = new ArrayList<>();
         this.binding = binding;
     }
 
@@ -55,10 +56,26 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
     @Override
     public void onBindViewHolder(final CartItemVewHolder holder, final int position) {
 
-        Item item = itemList.get(position);
+        CartItem cartItem = cartItemList.get(position);
 
-        holder.binding.itemName.setText(item.getName());
-        holder.binding.itemPrice.setText(MoneyFormatter.fromNumberToMoneyFormat(item.getPrice()));
+        holder.binding.itemName.setText(cartItem.getName());
+        holder.binding.itemPrice.setText(MoneyFormatter.fromNumberToMoneyFormat(cartItem.getPrice()));
+        holder.binding.cartItemQuantity.setText(String.valueOf(cartItem.getCount()));
+
+
+        if (cartItem.getImagePath() == null || cartItem.getImagePath().isEmpty()) {
+            holder.binding.itemImage.setImageResource(R.drawable.plantimage);
+        } else {
+            Glide.with(context)
+                    .load(cartItem.getImagePath())
+                    .error(R.drawable.plantimage)
+                    .placeholder(R.drawable.plantimage)
+                    .into(holder.binding.itemImage);
+        }
+
+
+
+
 
 
         holder.binding.btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -66,29 +83,42 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             public void onClick(View v) {
                 if (onItemCartClickListener == null) return;
 
-                onItemCartClickListener.onButtonRemoveClick(item);
+                onItemCartClickListener.onButtonRemoveClick(cartItem.getReferenceId());
             }
         });
 
 
-        if (item.getImagePath() == null || item.getImagePath().isEmpty()) {
-            holder.binding.itemImage.setImageResource(R.drawable.plantimage);
-        } else {
-            Glide.with(context)
-                    .load(item.getImagePath())
-                    .error(R.drawable.plantimage)
-                    .placeholder(R.drawable.plantimage)
-                    .into(holder.binding.itemImage);
-        }
+
+
+        holder.binding.cartItemPlusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cartItem.setCount(cartItem.getCount() + 1);
+                customNotify();
+            }
+        });
+
+
+
+
+        holder.binding.cartItemMinusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cartItem.getCount() == 1)return;
+
+                cartItem.setCount(cartItem.getCount() - 1);
+                customNotify();
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return cartItemList.size();
     }
 
-    public void setItemList(List<Item> itemList) {
-        this.itemList = itemList;
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
         customNotify();
     }
 
@@ -121,8 +151,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
     public double getInvoiceSum() {
 
-        return itemList.stream()
-                .mapToDouble(Item::getPrice).sum();
+        return cartItemList.stream()
+                .mapToDouble(CartItem::getPrice).sum();
 
 
 //        float sum = 0;
@@ -139,7 +169,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
     }
 
     public interface OnItemCartClickListener {
-        void onButtonRemoveClick(Item item);
+        void onButtonRemoveClick(String itemReference);
     }
 }
 

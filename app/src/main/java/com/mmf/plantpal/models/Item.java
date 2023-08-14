@@ -9,7 +9,6 @@ public  class Item implements Serializable {
     private int stock;
     private String imagePath;
     private String description;
-
     private boolean favorite;
 
     public Item() {

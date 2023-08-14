@@ -41,8 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/signup_welcome_text"
-            android:textAppearance="@style/TextAppearance.MyTheme.Headline3"
             android:textColor="@color/white"
+            style="@style/TextAppearance.MaterialComponents.Headline3"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/singup_image_view"
             app:layout_constraintTop_toBottomOf="@+id/singup_welcome_hello_tv" />

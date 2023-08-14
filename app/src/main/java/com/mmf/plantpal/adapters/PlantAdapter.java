@@ -132,7 +132,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
             holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.md_theme_light_error);
             holder.binding.btnFavoriteOrUpdate.setIcon(context.getDrawable(R.drawable.ic_filled_favorite));
         } else {
-            holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.md_theme_light_primary);
+            holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.seed);
             holder.binding.btnFavoriteOrUpdate.setIcon(context.getDrawable(R.drawable.ic_favorite));
         }
 
@@ -140,6 +140,8 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
     }
 
     private void bindForUser(PlantViewHolder holder, Plant plant) {
+
+        checkIsFavorite(holder, plant);
 
         holder.binding.btnAddCartOrDelete.setEnabled(plant.getStock() > 0);
 

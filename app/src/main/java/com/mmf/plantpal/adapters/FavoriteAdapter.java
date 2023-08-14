@@ -73,7 +73,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
 
 
-        holder.binding.btnFavorite.setOnClickListener(new View.OnClickListener() {
+        holder.binding.btnDeleteFavoriteItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 favoriteReference

@@ -6,7 +6,7 @@ public class Constants {
     public static final String KEY_PLANTS = "PLANTS";
     public static final String KEY_ACCESSORIES = "ACCESSORIES";
     public static final String KEY_FAVORITES = "FAVORITES";
-    public static final String KEY_CONTACT_MESSAGE = "CONTACT_MESSAGE";
+    public static final String KEY_FEED_BACK = "FEED_BACK";
 
 
 

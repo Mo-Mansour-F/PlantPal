@@ -116,7 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        app:headerLayout="@layout/user_nav_header"
+        app:headerLayout="@layout/nav_header"
         app:itemMaxLines="2"
         app:menu="@menu/user_drawer_view_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

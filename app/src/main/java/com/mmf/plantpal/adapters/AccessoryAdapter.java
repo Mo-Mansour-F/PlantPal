@@ -129,7 +129,7 @@ public class AccessoryAdapter extends RecyclerView.Adapter<AccessoryAdapter.Acce
             holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.md_theme_light_error);
             holder.binding.btnFavoriteOrUpdate.setIcon(context.getDrawable(R.drawable.ic_filled_favorite));
         } else {
-            holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.md_theme_light_primary);
+            holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.seed);
             holder.binding.btnFavoriteOrUpdate.setIcon(context.getDrawable(R.drawable.ic_favorite));
         }
 
@@ -138,6 +138,8 @@ public class AccessoryAdapter extends RecyclerView.Adapter<AccessoryAdapter.Acce
 
 
     private void bindForUser(AccessoryViewHolder holder, Accessory accessory){
+
+        checkIsFavorite(holder, accessory);
 
         holder.binding.btnAddCartOrDelete.setEnabled(accessory.getStock() > 0);
 
