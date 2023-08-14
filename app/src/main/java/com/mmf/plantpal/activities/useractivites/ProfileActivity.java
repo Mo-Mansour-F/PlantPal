@@ -123,6 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
                         MySharedPreferencesManager.clearUserData(ProfileActivity.this);
                         sDialog
                                 .setTitleText("Deleted!")
+                                .showCancelButton(false)
                                 .setContentText(getString(R.string.msg_account_deleted))
                                 .setConfirmText(getString(R.string.str_ok))
                                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
