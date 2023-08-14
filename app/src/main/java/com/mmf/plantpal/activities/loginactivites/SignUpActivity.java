@@ -159,7 +159,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (!isValidPassword(password)){
             MsgAlert.showFieldError(getApplicationContext(), getString(R.string.error_password_not_validation),
-                    binding.userEmailEt);
+                    binding.userPasswordEt);
             return true;
         }
 
