@@ -216,7 +216,9 @@ public class AccessoryFragment extends Fragment {
                             DataRepository.addType(accessory.getType());
                         }
 
-                        checkedTypes = new boolean[DataRepository.getTypesList().size()];
+                        if (checkedTypes == null){
+                            checkedTypes = new boolean[DataRepository.getTypesList().size()];
+                        }
 
                         searchList();
 

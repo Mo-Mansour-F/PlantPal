@@ -46,7 +46,6 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
         if (user.getRole() == Constants.ROLE_USER) {
             favoriteReference = MyFireBaseReferences
                     .getFavoriteReference()
-//                    .child(Constants.KEY_PLANTS)
                     .child(user.getReferenceId());
 
         }
@@ -127,7 +126,6 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
 
 
     private void checkIsFavorite(PlantViewHolder holder, Plant plant) {
-
         if (plant.isFavorite()) {
             holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.md_theme_light_error);
             holder.binding.btnFavoriteOrUpdate.setIcon(context.getDrawable(R.drawable.ic_filled_favorite));
@@ -135,17 +133,15 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
             holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.seed);
             holder.binding.btnFavoriteOrUpdate.setIcon(context.getDrawable(R.drawable.ic_favorite));
         }
-
-
     }
 
     private void bindForUser(PlantViewHolder holder, Plant plant) {
-
         checkIsFavorite(holder, plant);
 
         holder.binding.btnAddCartOrDelete.setEnabled(plant.getStock() > 0);
-
         holder.binding.btnAddCartOrDelete.setIcon(context.getDrawable(R.drawable.ic_add_cart));
+
+
         holder.binding.btnAddCartOrDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,12 +150,9 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
             }
         });
 
-
-
         holder.binding.btnFavoriteOrUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (plant.isFavorite()){
                     favoriteReference
                             .child(plant.getReferenceId())
@@ -184,7 +177,6 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
                 onPlantClickListener.onClick(holder.binding.plantImage, plant);
             }
         });
-
 
         favoriteReference
                 .child(plant.getReferenceId())

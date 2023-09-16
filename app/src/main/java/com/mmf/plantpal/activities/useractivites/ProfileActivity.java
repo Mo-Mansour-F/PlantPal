@@ -143,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
         MsgAlert.showProgress(this);
         String userName = binding.userName.getText().toString().trim();
         String address = binding.userAddress.getText().toString().trim();
-        String password = binding.userAddress.getText().toString().trim();
+        String password = binding.userPasswordEt.getText().toString().trim();
 
         user.setName(userName);
         user.setAddress(address);

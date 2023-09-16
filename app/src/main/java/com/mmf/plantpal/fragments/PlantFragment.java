@@ -224,7 +224,9 @@ public class PlantFragment extends Fragment {
                             DataRepository.addSpecies(plant.getSpecies());
                         }
 
-                        checkedSpecies = new boolean[DataRepository.getSpeciesList().size()];
+                        if (checkedSpecies == null){
+                            checkedSpecies = new boolean[DataRepository.getSpeciesList().size()];
+                        }
 
                         searchList();
 
