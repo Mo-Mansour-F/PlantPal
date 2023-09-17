@@ -82,6 +82,7 @@ public class PlantFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // to make the fragment listening for the option menu item clicked
         setHasOptionsMenu(true);
     }
 
@@ -114,6 +115,7 @@ public class PlantFragment extends Fragment {
 
     private void initView() {
         User user = MySharedPreferencesManager.getUserLoginDetails(requireContext());
+        // show or hide the add plant btn based on the role of the user
         if (user.getRole() == Constants.ROLE_ADMIN) {
             binding.btnAddPlant.setVisibility(View.VISIBLE);
         } else {
@@ -193,8 +195,6 @@ public class PlantFragment extends Fragment {
 
                 DataRepository.addItemCart(cartItem);
 
-//                DataRepository.getItemList().put(plant.getReferenceId(), cartItem);
-
                 onCartItemChangedListener.onOnCartItemChanged();
 
             }
@@ -215,7 +215,6 @@ public class PlantFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         plantList.clear();
 
-
                         for (DataSnapshot child : snapshot.getChildren()) {
                             Plant plant = child.getValue(Plant.class);
                             plantList.add(plant);
@@ -230,7 +229,6 @@ public class PlantFragment extends Fragment {
 
                         searchList();
 
-
                     }
 
                     @Override
@@ -242,22 +240,29 @@ public class PlantFragment extends Fragment {
 
 
     private void searchList() {
+        // delete old search data
         searchedPlantsList.clear();
         filteredPlantsList.clear();
 
         // 1 filter
+        // if there is species filter apply
         if (selectedSpecies.size() > 0) {
+            // to get only the plant with selected species
             filteredPlantsList = plantList.stream()
                     .filter(plant -> selectedSpecies.contains(plant.getSpecies()))
                     .collect(Collectors.toList());
-        } else {
+        }
+        else {
+            // if no species filter apply get all plant
             filteredPlantsList.addAll(plantList);
         }
 
         // 2 search
+        // if search text is empty
         if (searchValue.trim().isEmpty()) {
             searchedPlantsList.addAll(filteredPlantsList);
         } else {
+            // if search text have value then search for the text and ignore the case
             searchedPlantsList = filteredPlantsList.stream()
                     .filter(plant -> plant.getName().toLowerCase().contains(searchValue.toLowerCase()))
                     .collect(Collectors.toList());
@@ -265,12 +270,10 @@ public class PlantFragment extends Fragment {
 
 
         // 3 sort
-
-
         switch (sortBy) {
             case 0:
             default:
-                //sort by name
+                //sort by name in accesnding order
                 searchedPlantsList = searchedPlantsList.stream()
                         .sorted(new Comparator<Plant>() {
                             @Override
@@ -297,8 +300,6 @@ public class PlantFragment extends Fragment {
 
             case 2:
                 //sort by species
-
-
                 searchedPlantsList.sort(new Comparator<Plant>() {
                     @Override
                     public int compare(Plant o1, Plant o2) {
@@ -359,46 +360,6 @@ public class PlantFragment extends Fragment {
         alertDialog = builder.create();
         alertDialog.show();
 
-
-//
-//
-//        String[] items = {"name", "Price", "species"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_singlechoice, items) {
-//            @NonNull
-//            @Override
-//            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//                View view = super.getView(position, convertView, parent);
-//                AppCompatCheckedTextView radioButton = view.findViewById(android.R.id.text1);
-//                radioButton.setChecked(position == sortBy);
-//                return view;
-//            }
-//        };
-//
-//
-//        Holder holder = new ViewHolder(R.layout.select_dialog_list);
-//        DialogPlus dialog = DialogPlus.newDialog(requireContext())
-//                .setContentHolder(holder)
-//                .setGravity(Gravity.CENTER)
-//                .setCancelable(true)
-//                .setExpanded(false)
-//                .create();
-//
-//
-//        ListView listView = (ListView) dialog.getHolderView();
-//        listView.setAdapter(adapter);
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                sortBy = position;
-//                adapter.notifyDataSetChanged();
-//                dialog.dismiss();
-//                searchList();
-//            }
-//        });
-//
-//
-//        dialog.show();
     }
 
     private void showFilterList() {

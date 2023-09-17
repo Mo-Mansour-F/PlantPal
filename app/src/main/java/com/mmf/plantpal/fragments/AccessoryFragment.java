@@ -258,8 +258,6 @@ public class AccessoryFragment extends Fragment {
 
 
         // 3 sort
-
-
         switch (sortBy) {
             case 0:
             default:
@@ -353,45 +351,7 @@ public class AccessoryFragment extends Fragment {
         alertDialog.show();
 
 
-//
-//
-//        String[] items = {"name", "Price", "species"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), android.R.layout.select_dialog_singlechoice, items) {
-//            @NonNull
-//            @Override
-//            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//                View view = super.getView(position, convertView, parent);
-//                AppCompatCheckedTextView radioButton = view.findViewById(android.R.id.text1);
-//                radioButton.setChecked(position == sortBy);
-//                return view;
-//            }
-//        };
-//
-//
-//        Holder holder = new ViewHolder(R.layout.select_dialog_list);
-//        DialogPlus dialog = DialogPlus.newDialog(requireContext())
-//                .setContentHolder(holder)
-//                .setGravity(Gravity.CENTER)
-//                .setCancelable(true)
-//                .setExpanded(false)
-//                .create();
-//
-//
-//        ListView listView = (ListView) dialog.getHolderView();
-//        listView.setAdapter(adapter);
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                sortBy = position;
-//                adapter.notifyDataSetChanged();
-//                dialog.dismiss();
-//                searchList();
-//            }
-//        });
-//
-//
-//        dialog.show();
+
     }
 
     private void showFilterList() {
