@@ -24,10 +24,12 @@ public class ShowPlantActivity extends AppCompatActivity {
         binding = ActivityShowPlantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        // Retrieve the Plant object passed as an extra from the previous activity.
         plant = (Plant) getIntent().getSerializableExtra(Constants.KEY_PLANTS_PARAM);
 
+        // Initialize back btn elements
         initView();
+        // Fill UI with plant information
         initPlantInfo();
     }
 
@@ -43,6 +45,7 @@ public class ShowPlantActivity extends AppCompatActivity {
 
 
     private void initPlantInfo(){
+        // Fill UI elements with plant information.
         binding.plantNameHeader.setText(plant.getName());
         binding.plantName.setText(plant.getName());
         binding.plantPrice.setText(MoneyFormatter.fromNumberToMoneyFormat(plant.getPrice()));
@@ -52,20 +55,21 @@ public class ShowPlantActivity extends AppCompatActivity {
         binding.plantGrowHabit.setText(plant.getGrowHabit());
         binding.plantDescription.setText(plant.getDescription());
 
+        // Load and display the plant image using Glide
 
-
+        // If there is no image path provided, display a default image
         if (plant.getImagePath() == null || plant.getImagePath().isEmpty()) {
             binding.plantImage.setImageResource(R.drawable.plantimage);
         }
         else {
+            // Load the plant image from the firebase using Glide
             Glide.with(this)
                     .load(plant.getImagePath())
                     .error(R.drawable.plantimage)
                     .placeholder(R.drawable.plantimage)
                     .into(binding.plantImage);
 
-
-
+            // Load a blurred version of the plant image in another ImageView using Glide
             Glide.with(this)
                     .load(plant.getImagePath())
                     .error(R.drawable.plantimage)

@@ -38,28 +38,34 @@ public class FavoritesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Inflate the layout for this activity using data binding.
         binding = ActivityFavoritesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        // Get the user details from shared preferences.
         user = MySharedPreferencesManager.getUserLoginDetails(this);
 
-
+        // Set up the action bar.
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setTitle(getString(R.string.str_favorite));
         }
+
+        // Get the Firebase reference for the user's favorite items.
         favoriteReference = MyFireBaseReferences
                 .getFavoriteReference()
                 .child(user.getReferenceId());
 
+        // Initialize the RecyclerView to display favorite items.
         initRecyclerView();
+        // Fetch and display the user's favorite items.
         getFavorites();
     }
 
 
     private void initRecyclerView() {
+        // Create an adapter for displaying favorite items and set it to the RecyclerView.
         favoriteAdapter = new FavoriteAdapter(this, favoriteReference);
         binding.favoriteRecyclerView.setHasFixedSize(true);
         binding.favoriteRecyclerView.setAdapter(favoriteAdapter);
@@ -72,12 +78,13 @@ public class FavoritesActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         favoriteItemList.clear();
 
+                        // Iterate through the user's favorite items in the database and add it to the list
                         for (DataSnapshot child : snapshot.getChildren()) {
                             Item item = child.getValue(Item.class);
                             favoriteItemList.add(item);
                         }
 
-
+                        // Check if there are no favorite items to display.
                         if (favoriteItemList.size() == 0) {
                             binding.progressHorizontal.setVisibility(View.GONE);
                             binding.state.setVisibility(View.VISIBLE);
@@ -87,6 +94,7 @@ public class FavoritesActivity extends AppCompatActivity {
                             binding.progressHorizontalLayout.setVisibility(View.GONE);
                         }
 
+                        // Update the RecyclerView with the list of favorite items.
                         favoriteAdapter.setItemList(favoriteItemList);
 
 

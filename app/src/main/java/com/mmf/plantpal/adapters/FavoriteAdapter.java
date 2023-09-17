@@ -47,6 +47,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     @NonNull
     @Override
     public FavoriteVewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Inflate the favorite item layout and create a ViewHolder
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_layout, parent, false);
         return new FavoriteVewHolder(itemView);
     }
@@ -54,14 +55,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(final FavoriteVewHolder holder, final int position) {
-
+        // Get the Item object at the current position
         Item item = itemList.get(position);
 
+        // Bind item data to the layout elements.
         holder.binding.itemName.setText(item.getName());
         holder.binding.itemPrice.setText(MoneyFormatter.fromNumberToMoneyFormat(item.getPrice()));
 
-
-
+        // Load and display an image using Glide
         if (item.getImagePath() == null || item.getImagePath().isEmpty()) {
             holder.binding.itemImage.setImageResource(R.drawable.plantimage);
         }
@@ -74,20 +75,18 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         }
 
 
-
+        // Handle the delete button click to remove the favorite item
         holder.binding.btnDeleteFavoriteItem.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
+                // Remove the favorite item from Firebase
                 favoriteReference
                         .child(item.getReferenceId())
                         .removeValue();
-
+                // Remove the item from the list and update the adapter
                 itemList.remove(position);
                 notifyDataSetChanged();
-//                notifyItemRemoved(itemList.indexOf(item));
-
-
             }
         });
     }
@@ -97,6 +96,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         return itemList.size();
     }
 
+    // Set the list of favorite items and update the adapter.
     public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
         notifyDataSetChanged();
