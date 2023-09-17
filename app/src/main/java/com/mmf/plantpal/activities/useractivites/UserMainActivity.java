@@ -51,7 +51,6 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
 
         this.onOnCartItemChanged();
 
-//        binding.nvView.addHeaderView();
 
     }
 
@@ -85,6 +84,7 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
 
         binding.viewPager.setAdapter(userPagerAdapter);
 
+        //to change the fragment using the bottomNavigation icon
         binding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -106,7 +106,7 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
             }
         });
 
-
+        //to change the selected bottom navigation when fragment change using view page
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -116,7 +116,7 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
         });
     }
 
-
+    // to open drawer when clicking on the burger icon
     private void initView() {
         binding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @SuppressLint("NonConstantResourceId")
@@ -165,6 +165,7 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
                                 break;
 
                         }
+                        // to close the drawer when item is selected
                         selectDrawerItem(menuItem);
                         return true;
                     }
@@ -200,14 +201,14 @@ public class UserMainActivity extends AppCompatActivity implements OnCartItemCha
         startActivity(intent, options.toBundle());
     }
 
-
+    //to show the burger and the sort icon in the action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
-
+    // to change the badge number of chart in the bottom navigation bar
     @Override
     public void onOnCartItemChanged() {
         int count = DataRepository.getItemList().size();

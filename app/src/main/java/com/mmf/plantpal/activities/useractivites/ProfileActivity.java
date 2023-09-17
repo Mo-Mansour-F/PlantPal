@@ -57,26 +57,28 @@ public class ProfileActivity extends AppCompatActivity {
                     if (checkEmptyFields()) return;
                     updateUserInfo();
                 }else {
+                    // to make the input filed editable
                     enable = true;
                     enableField();
+                    // to change the button text and icon
                     binding.btnUpdate.setText(getString(R.string.str_save));
                     binding.btnUpdate.setIcon(getDrawable(R.drawable.ic_success_check));
                 }
             }
         });
     }
-
+    // to fill and disabled the user info fields
     private void initUserInfo() {
+        // fill the input with value
         binding.userEmail.setText(user.getEmail());
         binding.userName.setText(user.getName());
         binding.userAddress.setText(user.getAddress());
         binding.userPasswordEt.setText(user.getPassword());
-        binding.userPasswordEt.setEnabled(false);
-
+        // disable filed based on the enable var
         enableField();
-
     }
 
+    // enable or disable the fields based on the 'enable' var
     private void enableField(){
         binding.userName.setEnabled(enable);
         binding.userAddress.setEnabled(enable);

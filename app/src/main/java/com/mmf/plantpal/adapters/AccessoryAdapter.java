@@ -124,6 +124,7 @@ public class AccessoryAdapter extends RecyclerView.Adapter<AccessoryAdapter.Acce
 
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void checkIsFavorite(AccessoryViewHolder holder, Accessory accessory){
         if (accessory.isFavorite()) {
             holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.md_theme_light_error);
@@ -159,12 +160,14 @@ public class AccessoryAdapter extends RecyclerView.Adapter<AccessoryAdapter.Acce
                 }else {
                     favoriteReference
                             .child(accessory.getReferenceId())
-                            .setValue(true);
+                            .setValue(accessory);
                 }
 
 
                 accessory.setFavorite(!accessory.isFavorite());
-                checkIsFavorite(holder, accessory);
+                notifyDataSetChanged();
+
+//                checkIsFavorite(holder, accessory);
             }
         });
 

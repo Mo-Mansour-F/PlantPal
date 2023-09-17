@@ -50,19 +50,12 @@ public class FavoritesActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setTitle(getString(R.string.str_favorite));
         }
-
-
         favoriteReference = MyFireBaseReferences
                 .getFavoriteReference()
                 .child(user.getReferenceId());
 
-        initView();
         initRecyclerView();
         getFavorites();
-    }
-
-    private void initView() {
-
     }
 
 
@@ -74,76 +67,57 @@ public class FavoritesActivity extends AppCompatActivity {
 
     private void getFavorites() {
         favoriteReference
-                .addValueEventListener(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         favoriteItemList.clear();
 
-                        if (snapshot.getChildrenCount() == 0) {
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            Item item = child.getValue(Item.class);
+                            favoriteItemList.add(item);
+                        }
+
+
+                        if (favoriteItemList.size() == 0) {
                             binding.progressHorizontal.setVisibility(View.GONE);
                             binding.state.setVisibility(View.VISIBLE);
                             binding.state.setText(getString(R.string.str_no_favorite));
                             binding.progressHorizontalLayout.setVisibility(View.VISIBLE);
-
-                            favoriteAdapter.setItemList(favoriteItemList);
-
-
                         } else {
                             binding.progressHorizontalLayout.setVisibility(View.GONE);
-                            for (DataSnapshot child : snapshot.getChildren()) {
-                                getFavoritePlant(child.getKey());
-                            }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-    }
-
-
-    private void getFavoritePlant(String key) {
-        MyFireBaseReferences
-                .getPlantsReference()
-                .child(key)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            Item item = snapshot.getValue(Item.class);
-                            favoriteItemList.add(item);
-
-                            favoriteAdapter.setItemList(favoriteItemList);
-
-
-                        }else {
-                            getFavoriteAccessory(key);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-    }
-
-
-
-    private void getFavoriteAccessory(String key) {
-        MyFireBaseReferences
-                .getAccessoriesReference()
-                .child(key)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            Item item = snapshot.getValue(Item.class);
-                            favoriteItemList.add(item);
-                        }
                         favoriteAdapter.setItemList(favoriteItemList);
+
+
+//
+//                        if (snapshot.getChildrenCount() == 0) {
+//
+//                            for (DataSnapshot child : snapshot.getChildren()) {
+//                                Item item = child.getValue(Item.class);
+//
+//                                favoriteItemList.add(item);
+//                            }
+//
+//
+//
+//                            binding.progressHorizontal.setVisibility(View.GONE);
+//                            binding.state.setVisibility(View.VISIBLE);
+//                            binding.state.setText(getString(R.string.str_no_favorite));
+//                            binding.progressHorizontalLayout.setVisibility(View.VISIBLE);
+//
+//                            favoriteAdapter.setItemList(favoriteItemList);
+//
+//
+//                        } else {
+//                            binding.progressHorizontalLayout.setVisibility(View.GONE);
+//
+//                            for (DataSnapshot child : snapshot.getChildren()) {
+//                                getFavoritePlant(child.getKey());
+//                           }
+//                        }
+
+
                     }
 
                     @Override
@@ -152,6 +126,55 @@ public class FavoritesActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+//    private void getFavoritePlant(String key) {
+//        MyFireBaseReferences
+//                .getPlantsReference()
+//                .child(key)
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if (snapshot.exists()) {
+//                            Item item = snapshot.getValue(Item.class);
+//                            favoriteItemList.add(item);
+//                            favoriteAdapter.setItemList(favoriteItemList);
+//
+//
+//                        }else {
+//                            getFavoriteAccessory(key);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//    }
+//
+//
+//
+//    private void getFavoriteAccessory(String key) {
+//        MyFireBaseReferences
+//                .getAccessoriesReference()
+//                .child(key)
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if (snapshot.exists()) {
+//                            Item item = snapshot.getValue(Item.class);
+//                            favoriteItemList.add(item);
+//                        }
+//                        favoriteAdapter.setItemList(favoriteItemList);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//    }
 
 
     @Override

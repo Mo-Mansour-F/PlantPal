@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.mmf.plantpal.R;
 import com.mmf.plantpal.databinding.PlantLayoutBinding;
 import com.mmf.plantpal.models.Accessory;
+import com.mmf.plantpal.models.Item;
 import com.mmf.plantpal.models.Plant;
 import com.mmf.plantpal.models.User;
 import com.mmf.plantpal.utilteis.Constants;
@@ -125,6 +126,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
     }
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void checkIsFavorite(PlantViewHolder holder, Plant plant) {
         if (plant.isFavorite()) {
             holder.binding.btnFavoriteOrUpdate.setIconTintResource(R.color.md_theme_light_error);
@@ -160,7 +162,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.PlantViewHol
                 }else {
                     favoriteReference
                             .child(plant.getReferenceId())
-                            .setValue(true);
+                            .setValue(plant);
                 }
 
 

@@ -1,5 +1,6 @@
 package com.mmf.plantpal.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
         return new FavoriteVewHolder(itemView);
     }
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(final FavoriteVewHolder holder, final int position) {
 
@@ -74,11 +76,18 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
 
 
         holder.binding.btnDeleteFavoriteItem.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 favoriteReference
                         .child(item.getReferenceId())
                         .removeValue();
+
+                itemList.remove(position);
+                notifyDataSetChanged();
+//                notifyItemRemoved(itemList.indexOf(item));
+
+
             }
         });
     }
