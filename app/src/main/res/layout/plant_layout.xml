@@ -46,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_favorite"
+                app:iconTint="@color/seed"
                 app:iconGravity="end"
                 app:iconSize="25dp" />
 
@@ -56,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_add_cart"
+                app:iconTint="@color/seed"
                 app:iconGravity="end"
                 app:iconSize="25dp" />
 

@@ -46,6 +46,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserVewHolde
     @Override
     public void onBindViewHolder(final UserVewHolder holder, final int position) {
 
+        // Get the User object at the current position
         User user = usersList.get(position);
 
         holder.binding.userName.setText(user.getName());
@@ -57,7 +58,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserVewHolde
         return usersList.size();
     }
 
-
+    // Set the list of users and update the adapter.
     public void setUsersList(List<User> usersList) {
         this.usersList = usersList;
         notifyDataSetChanged();

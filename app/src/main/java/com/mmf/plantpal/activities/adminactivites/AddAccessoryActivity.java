@@ -55,7 +55,7 @@ public class AddAccessoryActivity extends AppCompatActivity {
         binding = ActivityAddAccessoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        // Retrieve accessory data for updating or null if adding a new accessory
         accessoryUpdate = (Accessory) getIntent().getSerializableExtra(Constants.KEY_ACCESSORY_PARAM);
 
 
@@ -64,22 +64,25 @@ public class AddAccessoryActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-
+        // Set the title and button text based on whether it's an update or add operation
         if (accessoryUpdate == null) {
             setTitle(getString(R.string.str_add_accessory));
             binding.btnSaveAccessory.setText(getString(R.string.str_save));
         } else {
             setTitle(getString(R.string.str_update_accessory));
             binding.btnSaveAccessory.setText(getString(R.string.str_update));
-            fillPlantData();
+            // Fill the form with existing accessory data for updating
+            fillAccessoryData();
         }
 
+        // Initialize the type dropdown list
         initTypes();
         initView();
         initLauncher();
     }
 
 
+    // Initialize the type dropdown list
     private void initTypes() {
         typesAdapter = new ArrayAdapter<>(AddAccessoryActivity.this, android.R.layout.simple_list_item_1, DataRepository.getTypesList());
         binding.accessoryType.setAdapter(typesAdapter);
@@ -93,15 +96,16 @@ public class AddAccessoryActivity extends AppCompatActivity {
                 if (checkEmptyFields()) return;
 
                 if (accessoryUpdate == null){
-                    uploadImage();
+                    uploadImage(); // upload the image and Add a new accessory
                 }else {
-                    updateAccessory();
+                    updateAccessory(); // Update an existing accessory
                 }
             }
         });
 
 
 
+        // Handle the accessory image selection from the gallery
         binding.accessoryCoverLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +128,7 @@ public class AddAccessoryActivity extends AppCompatActivity {
         });
     }
 
+    // Handle uploading the selected accessory image to Firebase Storage
     private void uploadImage() {
         MsgAlert.showProgressWithTitle(this, getString(R.string.str_uploading_image));
         String image_name = "" + System.currentTimeMillis() + "." + GetFileExtension(accessoryImageUri);
@@ -172,6 +177,7 @@ public class AddAccessoryActivity extends AppCompatActivity {
 
     }
 
+    // Save accessory data to Firebase
     private void saveAccessory(String imagePath) {
         DatabaseReference reference = MyFireBaseReferences
                 .getAccessoriesReference()
@@ -206,17 +212,16 @@ public class AddAccessoryActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         MsgAlert.hideProgressDialog();
                         MsgAlert.showSuccessToast(AddAccessoryActivity.this, getString(R.string.add_successfully));
-                        clearFields();
-                        DataRepository.addType(accessoryType);
-                        initTypes();
+                        clearFields(); // clear filed to add a new accessory
+                        DataRepository.addType(accessoryType); // add the new type to the old type list
+                        initTypes(); // get all type including the new one that has been added
                     }
                 });
 
 
     }
 
-
-
+    // Update an existing accessory in Firebase
     private void updateAccessory(){
         MsgAlert.showProgress(this);
 
@@ -254,6 +259,7 @@ public class AddAccessoryActivity extends AppCompatActivity {
                 });
     }
 
+    // Clear all input fields
     private void clearFields() {
         binding.accessoryName.getText().clear();
         binding.accessoryType.getText().clear();
@@ -264,6 +270,7 @@ public class AddAccessoryActivity extends AppCompatActivity {
         clearImageDate();
     }
 
+    // Clear the selected accessory image
     private void clearImageDate() {
         binding.accessoryImage.setImageResource(R.drawable.plantimage);
         binding.accessoryImageBlur.setImageResource(0);
@@ -345,7 +352,8 @@ public class AddAccessoryActivity extends AppCompatActivity {
         return false;
     }
 
-    private void fillPlantData() {
+    // Fill the form with existing accessory data for updating
+    private void fillAccessoryData() {
         binding.accessoryName.setText(accessoryUpdate.getName());
         binding.accessoryType.setText(accessoryUpdate.getType());
         binding.accessoryPrice.setText(String.valueOf(accessoryUpdate.getPrice()));
@@ -372,6 +380,7 @@ public class AddAccessoryActivity extends AppCompatActivity {
 
 
 
+    // Get the file extension of the selected accessory image
     private String GetFileExtension(Uri uri) {
         ContentResolver contentResolver = getContentResolver();
 
@@ -381,8 +390,7 @@ public class AddAccessoryActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-
-
+    // Initialize the activity result launcher for selecting an image from the gallery
     private void initLauncher() {
         activityResultLauncher_get_image_from_studio = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult()

@@ -55,6 +55,7 @@ public class AddPlantActivity extends AppCompatActivity {
         binding = ActivityAddPlantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Retrieve plant data for updating or null if adding a new plant
         plantUpdate = (Plant) getIntent().getSerializableExtra(Constants.KEY_PLANTS_PARAM);
 
 
@@ -63,21 +64,25 @@ public class AddPlantActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-
+        // Set the title and button text based on whether it's an update or add operation
         if (plantUpdate == null) {
             setTitle(getString(R.string.str_add_plant));
             binding.btnSavePlant.setText(getString(R.string.str_save));
         } else {
             setTitle(getString(R.string.title_update_plant));
             binding.btnSavePlant.setText(getString(R.string.str_update));
+
+            // Fill the form with existing plant data for updating
             fillPlantData();
         }
 
+        // Initialize the species dropdown list
         initSpecies();
         initView();
         initLauncher();
     }
 
+    // Initialize the species dropdown list
     private void initSpecies() {
         speciesAdapter = new ArrayAdapter<>(AddPlantActivity.this, android.R.layout.simple_list_item_1, DataRepository.getSpeciesList());
         binding.plantSpecies.setAdapter(speciesAdapter);
@@ -90,14 +95,15 @@ public class AddPlantActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (checkEmptyFields()) return;
                 if (plantUpdate == null){
-                    uploadImage();
+                    uploadImage(); // upload the image and Add a new plant
                 }else {
-                    updatePlant();
+                    updatePlant(); // Update an existing plant
                 }
             }
         });
 
 
+        // Handle the plant image selection from the gallery
         binding.plantCoverLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +127,7 @@ public class AddPlantActivity extends AppCompatActivity {
     }
 
 
+    // Handle uploading the selected plant image to Firebase Storage
     private void uploadImage() {
         MsgAlert.showProgressWithTitle(this, getString(R.string.str_uploading_image));
         String image_name = "" + System.currentTimeMillis() + "." + GetFileExtension(plantImageUri);
@@ -170,6 +177,7 @@ public class AddPlantActivity extends AppCompatActivity {
     }
 
 
+    // Save plant data to Firebase
     private void savePlant(String imagePath) {
         String plantName = binding.plantName.getText().toString().trim();
         String plantSpecies = binding.plantSpecies.getText().toString().trim();
@@ -205,19 +213,18 @@ public class AddPlantActivity extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         MsgAlert.hideProgressDialog();
                         MsgAlert.showSuccessToast(AddPlantActivity.this, getString(R.string.add_successfully));
-                        clearFields();
-                        DataRepository.addSpecies(plantSpecies);
-                        initSpecies();
+                        clearFields(); // clear filed to add a new plant
+                        DataRepository.addSpecies(plantSpecies); // add the new species to the old species list
+                        initSpecies(); // get all species including the new one that has been added
                     }
                 });
 
 
     }
 
+    // Update an existing plant in Firebase
     private void updatePlant(){
         MsgAlert.showProgress(this);
-
-
 
         String plantName = binding.plantName.getText().toString().trim();
         String plantSpecies = binding.plantSpecies.getText().toString().trim();
@@ -254,6 +261,7 @@ public class AddPlantActivity extends AppCompatActivity {
     }
 
 
+    // Get the file extension of the selected plant image
     private String GetFileExtension(Uri uri) {
         ContentResolver contentResolver = getContentResolver();
 
@@ -263,6 +271,7 @@ public class AddPlantActivity extends AppCompatActivity {
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
+    // Clear all input fields
     private void clearFields() {
         binding.plantName.getText().clear();
         binding.plantPrice.getText().clear();
@@ -276,6 +285,7 @@ public class AddPlantActivity extends AppCompatActivity {
     }
 
 
+    // Clear the selected plant image
     private void clearImageDate() {
         binding.plantImage.setImageResource(R.drawable.plantimage);
         binding.plantImageBlur.setImageResource(0);
@@ -357,6 +367,7 @@ public class AddPlantActivity extends AppCompatActivity {
     }
 
 
+    // Fill the form with existing plant data for updating
     private void fillPlantData() {
         binding.plantName.setText(plantUpdate.getName());
         binding.plantSpecies.setText(plantUpdate.getSpecies());
@@ -384,6 +395,7 @@ public class AddPlantActivity extends AppCompatActivity {
     }
 
 
+    // Initialize the activity result launcher for selecting an image from the gallery
     private void initLauncher() {
         activityResultLauncher_get_image_from_studio = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult()

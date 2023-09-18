@@ -36,24 +36,16 @@ public class UsersActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setTitle(getString(R.string.str_users));
         }
-
-
-
-        initView();
+        // Initialize the RecyclerView to display user accounts.
         initRecyclerView();
+        // Fetch and display the list of users with the role "user."
         getUsers();
     }
 
-
-    private void initView(){
-
-    }
-
-
     private void initRecyclerView(){
+        // Create an adapter for displaying user accounts and set it to the RecyclerView
         usersAdapter = new UsersAdapter(this);
         binding.usersRecyclerView.setHasFixedSize(true);
-
         binding.usersRecyclerView.setAdapter(usersAdapter);
     }
 
